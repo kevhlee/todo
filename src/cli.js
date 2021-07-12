@@ -117,6 +117,13 @@ const commandRemove = new Command("remove")
     todoStore.removeTodos(ids);
   });
 
+const commandReset = new Command("reset")
+  .command("reset")
+  .description("reset ID of each to-do task")
+  .action(() => {
+    todoStore.resetTodoIDs();
+  });
+
 const commandUndo = new Command("undo")
   .command("undo <ids...>")
   .description("mark to-do tasks as incomplete")
@@ -136,6 +143,7 @@ function run(argv) {
     .addCommand(commandEdit)
     .addCommand(commandList, { isDefault: true })
     .addCommand(commandRemove)
+    .addCommand(commandReset)
     .addCommand(commandUndo);
 
   return cli.parseAsync(argv);

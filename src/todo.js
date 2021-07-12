@@ -77,6 +77,18 @@ class TodoStore {
       .remove((todo) => ids.includes(todo.id))
       .write();
   }
+
+  resetTodoIDs() {
+    let count = 1;
+
+    const todos = this.db.get("todos").value();
+
+    for (let todo of todos) {
+      todo.id = count++;
+    }
+
+    this.db.set("count", count).set("todos", todos).write();
+  }
 }
 
 module.exports = new TodoStore();
