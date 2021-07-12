@@ -77,6 +77,10 @@ const commandUndo = new Command("undo")
     todo.markTodos(ids, false);
   });
 
+//=====================================================================
+// CLI
+//=====================================================================
+
 function run(argv) {
   const cli = new Command("todo")
     .addCommand(commandAdd)
