@@ -6,6 +6,50 @@ const todoStore = require("./todo");
 // Helper
 //=====================================================================
 
+function printAllTodos() {
+  const completedTodos = todoStore.getTodos((todo) => todo.done);
+  const incompleteTodos = todoStore.getTodos((todo) => !todo.done);
+
+  if (completedTodos.length === 0 && incompleteTodos === 0) {
+    console.log("There are no to-do tasks");
+  } else {
+    console.log(chalk.bold("Incomplete To-Do's"));
+
+    for (let todo of incompleteTodos) {
+      console.log(todoAsString(todo));
+    }
+
+    console.log("\n" + chalk.bold("Completed To-Do's"));
+
+    for (let todo of completedTodos) {
+      console.log(todoAsString(todo));
+    }
+  }
+}
+
+function printTodos(completed = false) {
+  const todos = todoStore.getTodos((todo) => todo.done === completed);
+
+  if (todos.length === 0) {
+    if (completed) {
+      console.log("There are no completed to-do tasks.");
+    } else {
+      console.log("There are no to-do tasks");
+    }
+    return;
+  }
+
+  if (completed) {
+    console.log(chalk.bold("Completed Tasks"));
+  } else {
+    console.log(chalk.bold("Incomplete Tasks"));
+  }
+
+  for (let todo of todos) {
+    console.log(todoAsString(todo));
+  }
+}
+
 function todoAsString(todo) {
   const id = `  ${todo.id}`.slice(-2) + ".";
   const status = todo.done ? chalk.green.bold("✔") : " ";
@@ -58,20 +102,10 @@ const commandList = new Command("list")
       return;
     }
 
-    const todos = todoStore.getTodos(
-      (todo) => options.all || (options.complete ? todo.done : !todo.done)
-    );
-
-    if (todos.length === 0) {
-      if (options.complete) {
-        console.log("There are no completed to-do tasks.");
-      } else {
-        console.log("There are no to-do tasks.");
-      }
-    }
-
-    for (let todo of todos) {
-      console.log(todoAsString(todo));
+    if (options.all) {
+      printAllTodos();
+    } else {
+      printTodos(options.complete);
     }
   });
 
