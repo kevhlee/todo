@@ -41,6 +41,16 @@ class TodoManager {
     this.db.set("count", count).write();
   }
 
+  editTodo(id, todo) {
+    todo = todo.match(/(\.|!|\?)$/) ? todo : todo + ".";
+
+    this.db
+      .get("todos")
+      .find({ id: parseInt(id) })
+      .assign({ todo })
+      .write();
+  }
+
   filteredRemoveTodos(filter) {
     this.db.get("todos").remove(filter).write();
   }

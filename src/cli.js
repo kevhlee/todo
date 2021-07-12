@@ -36,9 +36,10 @@ const commandDo = new Command("do")
   });
 
 const commandEdit = new Command("edit")
+  .command("edit <id> <todo>")
   .description("edit a to-do task")
-  .action(() => {
-    console.log("Not implemented yet");
+  .action((id, newTodo) => {
+    todo.editTodo(id, newTodo);
   });
 
 const commandList = new Command("list")
