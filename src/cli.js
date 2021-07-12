@@ -1,12 +1,12 @@
 const { Command } = require("commander");
-const todo = require("./todo");
+const todoStore = require("./todo");
 
 //=====================================================================
 // Helper
 //=====================================================================
 
-function todoAsString(t) {
-  return `[${t.done ? "✔" : " "}] ${t.id}. ${t.todo}`;
+function todoAsString(todo) {
+  return `[${todo.done ? "✔" : " "}] ${todo.id}. ${todo.todo}`;
 }
 
 //=====================================================================
@@ -17,7 +17,7 @@ const commandAdd = new Command("add")
   .command("add <todos...>")
   .description("add new to-do tasks")
   .action((todos) => {
-    todo.addTodos(todos);
+    todoStore.addTodos(todos);
   });
 
 const commandClear = new Command("clear")
@@ -25,21 +25,21 @@ const commandClear = new Command("clear")
   .alias("clr")
   .description("clear completed to-do tasks")
   .action(() => {
-    todo.filteredRemoveTodos((todo) => todo.done);
+    todoStore.filteredRemoveTodos((todo) => todo.done);
   });
 
 const commandDo = new Command("do")
   .command("do <ids...>")
   .description("mark to-do tasks as complete")
   .action((ids) => {
-    todo.markTodos(ids, true);
+    todoStore.markTodos(ids, true);
   });
 
 const commandEdit = new Command("edit")
   .command("edit <id> <todo>")
   .description("edit a to-do task")
   .action((id, newTodo) => {
-    todo.editTodo(id, newTodo);
+    todoStore.editTodo(id, newTodo);
   });
 
 const commandList = new Command("list")
@@ -54,12 +54,12 @@ const commandList = new Command("list")
       return;
     }
 
-    const todos = todo.getTodos(
-      (t) => options.all || (options.complete ? t.done : !t.done)
+    const todos = todoStore.getTodos(
+      (todo) => options.all || (options.complete ? todo.done : !todo.done)
     );
 
-    for (let t of todos) {
-      console.log(todoAsString(t));
+    for (let todo of todos) {
+      console.log(todoAsString(todo));
     }
   });
 
@@ -68,14 +68,14 @@ const commandRemove = new Command("remove")
   .alias("rm")
   .description("remove to-do tasks")
   .action((ids) => {
-    todo.removeTodos(ids);
+    todoStore.removeTodos(ids);
   });
 
 const commandUndo = new Command("undo")
   .command("undo <ids...>")
   .description("mark to-do tasks as incomplete")
   .action((ids) => {
-    todo.markTodos(ids, false);
+    todoStore.markTodos(ids, false);
   });
 
 //=====================================================================

@@ -4,7 +4,7 @@ const { join } = require("path");
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
 
-class TodoManager {
+class TodoStore {
   constructor() {
     const todosDir = join(homedir(), ".todos");
     const todosFile = join(todosDir, "todos.json");
@@ -79,4 +79,4 @@ class TodoManager {
   }
 }
 
-module.exports = new TodoManager();
+module.exports = new TodoStore();
