@@ -147,7 +147,7 @@ function run(argv) {
     .addCommand(commandClear)
     .addCommand(commandDo)
     .addCommand(commandEdit)
-    .addCommand(commandList, { isDefault: true })
+    .addCommand(commandList)
     .addCommand(commandRemove)
     .addCommand(commandReset)
     .addCommand(commandUndo);
