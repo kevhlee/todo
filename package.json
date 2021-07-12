@@ -1,0 +1,27 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "A CLI for managing to-do tasks.",
+  "scripts": {
+    "format": "prettier --write './src/**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevhlee/todo.git"
+  },
+  "keywords": [
+    "cli",
+    "productivity",
+    "task",
+    "todo"
+  ],
+  "author": "Kevin Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kevhlee/todo/issues"
+  },
+  "homepage": "https://github.com/kevhlee/todo#readme",
+  "devDependencies": {
+    "prettier": "^2.3.2"
+  }
+}
