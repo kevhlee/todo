@@ -55,7 +55,7 @@ class TodoStore {
     this.db.get("todos").remove(filter).write();
   }
 
-  getTodos(filter) {
+  getTodos(filter = () => true) {
     return this.db.get("todos").filter(filter).value();
   }
 
