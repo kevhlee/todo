@@ -1,4 +1,5 @@
 const { Command } = require("commander");
+const chalk = require("chalk");
 const todoStore = require("./todo");
 
 //=====================================================================
@@ -6,7 +7,10 @@ const todoStore = require("./todo");
 //=====================================================================
 
 function todoAsString(todo) {
-  return `[${todo.done ? "✔" : " "}] ${todo.id}. ${todo.todo}`;
+  const id = `  ${todo.id}`.slice(-2) + ".";
+  const status = todo.done ? chalk.green.bold("✔") : " ";
+
+  return `[${status}] ${id} ${todo.todo}`;
 }
 
 //=====================================================================

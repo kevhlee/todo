@@ -28,6 +28,7 @@
     "prettier": "^2.3.2"
   },
   "dependencies": {
+    "chalk": "^4.1.1",
     "commander": "^8.0.0",
     "lowdb": "^1.0.0"
   }
