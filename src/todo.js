@@ -40,6 +40,10 @@ class TodoManager {
 
     this.db.set("count", count).write();
   }
+
+  getTodos(filter) {
+    return this.db.get("todos").filter(filter).value();
+  }
 }
 
 module.exports = new TodoManager();
