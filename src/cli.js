@@ -1,5 +1,6 @@
 const { Command } = require("commander");
 const chalk = require("chalk");
+const figlet = require("figlet");
 const todoStore = require("./todo");
 
 //=====================================================================
@@ -135,8 +136,13 @@ const commandUndo = new Command("undo")
 // CLI
 //=====================================================================
 
+function logo() {
+  return chalk.greenBright.bold(figlet.textSync("todo", { font: "Soft" }));
+}
+
 function run(argv) {
   const cli = new Command("todo")
+    .addHelpText("beforeAll", logo)
     .addCommand(commandAdd)
     .addCommand(commandClear)
     .addCommand(commandDo)
