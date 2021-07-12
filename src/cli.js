@@ -142,8 +142,6 @@ function logo() {
   const g = Math.round(0x20 + Math.random() * (0x100 - 0x20));
   const b = Math.round(0x20 + Math.random() * (0x100 - 0x20));
 
-  console.log(r, g, b);
-
   return chalk.rgb(r, g, b).bold(figlet.textSync("todo", { font: "Soft" }));
 }
 
