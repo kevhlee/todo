@@ -50,13 +50,21 @@ const commandList = new Command("list")
   .description("print to-do tasks")
   .action((options) => {
     if (options.all && options.complete) {
-      console.error("Invalid options");
+      console.log("Invalid options");
       return;
     }
 
     const todos = todoStore.getTodos(
       (todo) => options.all || (options.complete ? todo.done : !todo.done)
     );
+
+    if (todos.length === 0) {
+      if (options.complete) {
+        console.log("There are no completed to-do tasks.");
+      } else {
+        console.log("There are no to-do tasks.");
+      }
+    }
 
     for (let todo of todos) {
       console.log(todoAsString(todo));
