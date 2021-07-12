@@ -2,6 +2,7 @@ const { Command } = require("commander");
 const chalk = require("chalk");
 const figlet = require("figlet");
 const todoStore = require("./todo");
+const { version } = require("../package.json");
 
 //=====================================================================
 // Helper
@@ -142,6 +143,7 @@ function logo() {
 
 function run(argv) {
   const cli = new Command("todo")
+    .version(version)
     .addHelpText("beforeAll", logo)
     .addCommand(commandAdd)
     .addCommand(commandClear)
