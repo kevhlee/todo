@@ -2,6 +2,9 @@
   "name": "todo",
   "version": "1.0.0",
   "description": "A CLI for managing to-do tasks.",
+  "bin": {
+    "todo": "./src/app.js"
+  },
   "scripts": {
     "format": "prettier --write './src/**/*.js'"
   },
@@ -23,5 +26,8 @@
   "homepage": "https://github.com/kevhlee/todo#readme",
   "devDependencies": {
     "prettier": "^2.3.2"
+  },
+  "dependencies": {
+    "commander": "^8.0.0"
   }
 }
