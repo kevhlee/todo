@@ -1,9 +1,11 @@
 const { Command } = require("commander");
+const todo = require("./todo");
 
 const commandAdd = new Command("add")
+  .command("add <todos...>")
   .description("add new to-do tasks")
-  .action(() => {
-    console.log("Not implemented yet");
+  .action((todos) => {
+    todo.addTodos(todos);
   });
 
 const commandClear = new Command("clear")
