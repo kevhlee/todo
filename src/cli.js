@@ -27,9 +27,10 @@ const commandClear = new Command("clear")
   });
 
 const commandDo = new Command("do")
+  .command("do <ids...>")
   .description("mark to-do tasks as complete")
-  .action(() => {
-    console.log("Not implemented yet");
+  .action((ids) => {
+    todo.markTodos(ids, true);
   });
 
 const commandEdit = new Command("edit")
@@ -66,9 +67,10 @@ const commandRemove = new Command("remove")
   });
 
 const commandUndo = new Command("undo")
+  .command("undo <ids...>")
   .description("mark to-do tasks as incomplete")
-  .action(() => {
-    console.log("Not implemented yet");
+  .action((ids) => {
+    todo.markTodos(ids, false);
   });
 
 function run(argv) {

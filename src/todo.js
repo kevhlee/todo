@@ -44,6 +44,16 @@ class TodoManager {
   getTodos(filter) {
     return this.db.get("todos").filter(filter).value();
   }
+
+  markTodos(ids, done) {
+    for (let id of ids) {
+      this.db
+        .get(`todos`)
+        .find({ id: parseInt(id) })
+        .assign({ done })
+        .write();
+    }
+  }
 }
 
 module.exports = new TodoManager();
