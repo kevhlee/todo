@@ -13,13 +13,13 @@ function printAllTodos() {
   if (completedTodos.length === 0 && incompleteTodos === 0) {
     console.log("There are no to-do tasks");
   } else {
-    console.log(chalk.bold("Incomplete To-Do's"));
+    console.log(chalk.bold("Incomplete To-Do's 🛠"));
 
     for (let todo of incompleteTodos) {
       console.log(todoAsString(todo));
     }
 
-    console.log("\n" + chalk.bold("Completed To-Do's"));
+    console.log("\n" + chalk.bold("Completed To-Do's ✅"));
 
     for (let todo of completedTodos) {
       console.log(todoAsString(todo));
@@ -40,9 +40,9 @@ function printTodos(completed = false) {
   }
 
   if (completed) {
-    console.log(chalk.bold("Completed Tasks"));
+    console.log(chalk.bold("Completed Tasks ✅"));
   } else {
-    console.log(chalk.bold("Incomplete Tasks"));
+    console.log(chalk.bold("Incomplete Tasks 🛠"));
   }
 
   for (let todo of todos) {
