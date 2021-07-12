@@ -21,9 +21,11 @@ const commandAdd = new Command("add")
   });
 
 const commandClear = new Command("clear")
+  .command("clear")
+  .alias("clr")
   .description("clear completed to-do tasks")
   .action(() => {
-    console.log("Not implemented yet");
+    todo.filteredRemoveTodos((todo) => todo.done);
   });
 
 const commandDo = new Command("do")
@@ -61,9 +63,11 @@ const commandList = new Command("list")
   });
 
 const commandRemove = new Command("remove")
+  .command("remove <ids...>")
+  .alias("rm")
   .description("remove to-do tasks")
-  .action(() => {
-    console.log("Not implemented yet");
+  .action((ids) => {
+    todo.removeTodos(ids);
   });
 
 const commandUndo = new Command("undo")

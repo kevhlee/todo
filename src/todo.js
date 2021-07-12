@@ -41,6 +41,10 @@ class TodoManager {
     this.db.set("count", count).write();
   }
 
+  filteredRemoveTodos(filter) {
+    this.db.get("todos").remove(filter).write();
+  }
+
   getTodos(filter) {
     return this.db.get("todos").filter(filter).value();
   }
@@ -53,6 +57,15 @@ class TodoManager {
         .assign({ done })
         .write();
     }
+  }
+
+  removeTodos(ids) {
+    ids = ids.map((id) => parseInt(id));
+
+    this.db
+      .get("todos")
+      .remove((todo) => ids.includes(todo.id))
+      .write();
   }
 }
 
