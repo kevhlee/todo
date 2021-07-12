@@ -37,6 +37,7 @@ Commands:
   edit <id> <todo>    edit a to-do task
   list|ls [options]   print to-do tasks
   remove|rm <ids...>  remove to-do tasks
+  reset               reset ID of each to-do task
   undo <ids...>       mark to-do tasks as incomplete
   help [command]      display help for command
 ```
