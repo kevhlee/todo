@@ -130,6 +130,15 @@ const commandReset = new Command("reset")
     todoStore.resetTodoIDs();
   });
 
+const commandSort = new Command("sort")
+  .command("sort")
+  .option("-d, --desc", "sort in descending order", false)
+  .option("-r, --reset", "reset the ID of each to-do task", false)
+  .description("sort all the to-do tasks")
+  .action((options) => {
+    todoStore.sortTodos(options.desc, options.reset);
+  });
+
 const commandUndo = new Command("undo")
   .command("undo <ids...>")
   .description("mark to-do tasks as incomplete")
@@ -160,6 +169,7 @@ function run(argv) {
     .addCommand(commandList)
     .addCommand(commandRemove)
     .addCommand(commandReset)
+    .addCommand(commandSort)
     .addCommand(commandUndo);
 
   return cli.parseAsync(argv);

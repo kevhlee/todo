@@ -89,6 +89,28 @@ class TodoStore {
 
     this.db.set("count", count).set("todos", todos).write();
   }
+
+  sortTodos(descending = false, reset = false) {
+    const todos = this.db.get("todos").value();
+
+    todos.sort((a, b) => {
+      return descending
+        ? b.todo.localeCompare(a.todo)
+        : a.todo.localeCompare(b.todo);
+    });
+
+    if (reset) {
+      let count = 1;
+
+      for (let todo of todos) {
+        todo.id = count++;
+      }
+
+      this.db.set("count", count).write();
+    }
+
+    this.db.set("todos", todos).write();
+  }
 }
 
 module.exports = new TodoStore();
